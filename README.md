@@ -1,112 +1,59 @@
-## Airport Concurrent Simulation
+# ✈️ Airport Concurrent Simulation
 
-A Java-based airport simulation developed to demonstrate **concurrent programming, thread coordination, resource management, and synchronization** in a realistic airport environment.
+A Java-based airport simulation developed to demonstrate **concurrent programming, thread coordination, synchronization, and shared-resource management**.
 
-The simulation models multiple aircraft arriving, landing, receiving ground services, and departing while sharing limited airport resources such as a single runway, three gates, and one refuelling truck.
+The simulation models multiple aircraft arriving, landing, receiving ground services, and departing while sharing **one runway, three gates, and one refuelling truck**.
 
-## Features
+## 🚀 Features
 
 * Multiple aircraft operating concurrently
-* Single shared runway for landing and departure
-* Maximum of three aircraft on the airport grounds
-* Three airport gates with controlled allocation
-* ATC-controlled landing and departure clearances
+* Single shared runway
+* Three airport gates
+* ATC-controlled landing and departure
 * Emergency landing priority
-* Passenger boarding and disembarking performed concurrently
-* Aircraft cleaning and supply refilling performed concurrently
-* Exclusive access to a single refuelling truck
-* Aircraft waiting and holding when airport capacity is unavailable
-* Random aircraft arrival intervals of 0–2 seconds
-* Random passenger numbers up to 50 per aircraft
-* Final airport safety checks and performance statistics
+* Concurrent passenger operations
+* Concurrent cleaning and supply refilling
+* Single refuelling truck
+* Aircraft waiting when airport capacity is unavailable
+* Final safety checks and statistics
 
-## Concurrency Concepts
+## 🧵 Concurrency
 
-The project demonstrates several Java concurrency mechanisms:
+The project uses several Java concurrency mechanisms:
 
-* **Threads** — individual pilot and airport operation threads
-* **ExecutorService** — manages passenger, ground crew, and refuelling tasks
-* **BlockingQueue** — used as the ATC message queue
-* **CompletableFuture** — coordinates requests between pilots and ATC
-* **CountDownLatch** — coordinates the congestion and emergency landing scenario
-* **Synchronization** — protects shared statistics and console output
-* **Single-thread executor** — ensures only one refuelling operation occurs at a time
+* `Thread` — aircraft and airport activities
+* `ExecutorService` — manages concurrent tasks
+* `BlockingQueue` — handles ATC messages
+* `CompletableFuture` — coordinates requests between pilots and ATC
+* `CountDownLatch` — coordinates the emergency landing scenario
+* `synchronized` — protects shared data and console output
 
-## System Architecture
-
-The simulation is divided into several main components:
-
-| Component              | Responsibility                                       |
-| ---------------------- | ---------------------------------------------------- |
-| `AirportSimulation`    | Starts and coordinates the overall simulation        |
-| `Flight`               | Represents aircraft behaviour and lifecycle          |
-| `AirTrafficController` | Manages runway, gate allocation, and flight requests |
-| `Gate`                 | Represents airport gate resources                    |
-| `AirportStatistics`    | Records waiting times and passenger statistics       |
-| `AtcMessage` classes   | Represent messages exchanged with ATC                |
-
-## Airport Workflow
-
-Each aircraft follows a lifecycle similar to:
+## 🛫 Simulation Flow
 
 ```text
-Arrival
-   ↓
-Landing Request
-   ↓
-ATC Clearance
-   ↓
-Landing
-   ↓
-Taxi to Gate
-   ↓
-Passenger Disembarkation
-   ↓
-Ground Operations
-   ├── Supply Refill
-   ├── Cleaning
-   ├── Refuelling
-   └── Passenger Boarding
-   ↓
-Departure Request
-   ↓
-ATC Clearance
-   ↓
-Taxi to Runway
-   ↓
-Take-off
-   ↓
-Departure
+Arrival → Landing → Taxi → Gate
+                    ↓
+          Passenger Operations
+                    ↓
+          Ground Operations
+                    ↓
+          Departure → Take-off
 ```
 
-Ground operations are executed concurrently where appropriate while shared resources remain controlled.
+Ground operations such as passenger handling, cleaning, supply refilling, and refuelling run concurrently where appropriate while shared resources remain controlled.
 
-## Statistics
+## 📊 Final Statistics
 
 After all aircraft have completed their journeys, the simulation reports:
 
-* Minimum waiting time
-* Average waiting time
-* Maximum waiting time
-* Number of aircraft served
-* Number of passengers boarded
-* Whether all gates are empty
-* Whether the runway is clear
-* Whether the airport grounds are clear
+* Minimum, average, and maximum waiting time
+* Aircraft served
+* Passengers boarded
+* Gate status
+* Runway status
+* Airport ground status
 
-## Technologies
-
-* **Java**
-* Java Concurrency API
-* `Thread`
-* `ExecutorService`
-* `BlockingQueue`
-* `CompletableFuture`
-* `CountDownLatch`
-* Git & GitHub
-* Visual Studio Code
-
-## How to Run
+## ▶️ How to Run
 
 ### Using VS Code
 
@@ -126,31 +73,26 @@ Run the simulation:
 java -cp out AirportSimulation
 ```
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 Airport-Concurrent-Simulation/
-│
 ├── src/
 │   ├── AirportSimulation.java
 │   ├── Flight.java
 │   ├── AirTrafficController.java
 │   ├── AirportStatistics.java
 │   ├── Gate.java
-│   ├── AtcMessage.java
-│   ├── LandingRequest.java
-│   ├── LandingRunwayCleared.java
-│   ├── DepartureRequest.java
-│   ├── GateReleased.java
-│   ├── DepartureCompleted.java
-│   └── FinishRequest.java
-│
+│   └── AtcMessage classes
 ├── .gitignore
 └── README.md
 ```
 
-## Purpose
+## 🎓 Project Context
 
-This project was developed as part of a Concurrent Programming module to apply Java concurrency concepts to a realistic resource-sharing problem.
+A university project focused on applying **Java concurrency concepts** to a realistic resource-sharing problem.
 
-The main focus is on coordinating multiple independent activities safely while preventing conflicts over shared airport resources.
+The main focus is coordinating multiple independent activities safely while preventing conflicts over shared airport resources.
+
+
+
